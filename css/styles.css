@@ -51,6 +51,11 @@ p {
     border-radius: 7px;
 }
 
+#github-container {
+    padding: 3px;
+    border: 1px solid grey;
+    border-radius: 7px;
+}
 
 #length-and-range {
     padding: 3px;

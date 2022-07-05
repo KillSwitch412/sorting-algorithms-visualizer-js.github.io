@@ -9,6 +9,9 @@
     <!-- ! Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
+    <!-- ! Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+
     <!-- ! CSS -->
     <link rel="stylesheet" href="css/styles.css">
 
@@ -64,7 +67,7 @@
                     </ul>
                 </div> -->
 
-                <button id="regen-btn" onclick="setArrayAndValueConstraintsAndDisplay()" type="button" class="btn btn-secondary btn-sm">ReGenerate</button>
+                <button id="regen-btn" onclick="setArrayAndValueConstraintsAndDisplay()" type="button" class="btn btn-secondary btn-sm"><i class="bi bi-arrow-clockwise"></i> Refresh</button>
                 
             </div>
 
@@ -78,8 +81,43 @@
             </div>
 
             <div id="about-container">
-                <button onclick="" type="button" class="btn btn-secondary btn-sm">How this works?</button>
+                <!-- ! Modal trigger Btn -->
+                <button type="button" data-bs-target="#howthisworkds" class="btn btn-secondary btn-sm" data-bs-toggle="modal"><i class="bi bi-question-circle-fill"></i> How this works</button>
+                <!-- ! Modal -->
+                <div class="modal modal-xl modal-dialog-scrollable fade" id="howthisworkds" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-dark" id="howthisworkdsLabel">How this Works</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-secondary">
+
+                                <p class="text-dark text-bg-warning p-2 pt-1 pb-1"><span class="bold-text text-dark">NOTE:</span> Pressing <span class="bold-text text-dark">'Refresh'</span> or changing <span class="bold-text text-dark">'Array Length'</span>  or <span class="bold-text text-dark">'Algorithm'</span> during the execution will result in crashing the code.</p>
+
+                                <h6 class="text-dark mt-2">Heading 1</h6>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae placeat excepturi in deserunt et incidunt dolorem modi ab delectus dolore corporis magni inventore quaerat perspiciatis, fugit qui nemo provident cum.</p>
+
+                                <h6 class="text-dark mt-2">Heading 2</h6>
+                                <p>Lorem ipsum dolor <span class="text-light text-bg-secondary p-1 pt-0 pb-0">Some code here</span> consectetur adipisicing elit. Recusandae placeat excepturi in deserunt et incidunt dolorem modi ab delectus dolore corporis magni inventore quaerat perspiciatis, fugit qui nemo provident cum.</p>
+
+                                <h6 class="text-dark mt-2">Heading 3</h6>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae placeat excepturi in deserunt et incidunt dolorem modi ab delectus dolore corporis magni inventore quaerat perspiciatis, fugit qui nemo provident cum.</p>
+
+                                <h6 class="text-dark mt-2">Heading 4</h6>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae placeat excepturi in deserunt et incidunt dolorem modi ab delectus dolore corporis magni inventore quaerat perspiciatis, fugit qui nemo provident cum.</p>
+
+                                <h6 class="text-dark mt-2">Heading 5</h6>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae placeat excepturi in deserunt et incidunt dolorem modi ab delectus dolore corporis magni inventore quaerat perspiciatis, fugit qui nemo provident cum.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://github.com/KillSwitch412" target="_blank" role="button" class="btn btn-secondary btn-sm"><i class="bi bi-github"></i> My Github</a>
             </div>
+
         </nav>
 
         <!-- * body -->
@@ -101,7 +139,7 @@
         <div class="controller-btns">
             <div>
                 <!-- <button id="reset-btn" onclick="" type="button" class="btn btn-warning btn-sm">reset</button> -->
-                <button id="start-btn" onclick="startAlgo()" type="button" class="btn btn-success btn-sm">Start</button>
+                <button id="start-btn" onclick="startAlgo()" type="button" class="btn btn-success btn-sm"><i class="bi bi-play-fill"></i> Start</button>
             </div>
         </div>
     </footer>
