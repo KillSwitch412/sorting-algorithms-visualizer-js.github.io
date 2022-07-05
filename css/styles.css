@@ -22,9 +22,16 @@ p {
     font-size: 14px;
 }
 
+.body-nav-holder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .navigation-bar {
     background-color: #1e1e1e;
-    padding: 20px;
+    padding: 15px 20px;
+    width: 100%;
 
     display: flex;
     flex-direction: row;
@@ -32,9 +39,76 @@ p {
     justify-content: space-between;
 }
 
+.playground {
+    width: 80%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* ! remove later */
+    /* border: 1px solid #F6F8F8; */
+}
+
+.test-data-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.test-data {
+    background-color: #3CBEB4;
+    display: flex;
+    color: #333333;
+    padding: 0px 5px;
+
+    border-left: 1px solid #333333;
+    border-right: 1px solid #333333;
+}
+
+.test-data:hover {
+    background-color: #F6F8F8;
+}
+
+#tst-d1 {
+    height: 69px;
+}
+#tst-d2 {
+    height: 150px;
+}
+#tst-d3 {
+    height:75px;
+}
+#tst-d4 {
+    height: 90px;
+}
+#tst-d5 {
+    height: 70px;
+}
+#tst-d6 {
+    height: 50px;
+}
+#tst-d7 {
+    height: 250px;
+}
+#tst-d8 {
+    height:20px;
+}
+#tst-d9 {
+    height: 55px;
+}
+#tst-d10 {
+    height: 80px;
+}
+
+#algorithm-choices {
+    padding: 3px;
+    border: 1px solid grey;
+    border-radius: 7px;
+}
+
 .footer-bar {
     background-color: #1e1e1e;
-    padding: 20px;
+    padding: 15px 20px;
 
     display: flex;
     flex-direction: row;

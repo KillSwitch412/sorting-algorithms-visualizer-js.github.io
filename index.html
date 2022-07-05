@@ -12,25 +12,48 @@
     <!-- ! CSS -->
     <link rel="stylesheet" href="css/styles.css">
 
-    <title>Visual Sorting</title>
+    <title>Algorithm Visualizer</title>
 
 </head>
 
 <body>
 
-    <!-- * navbar -->
-    <nav class="navigation-bar">
-        <h5 id="project-name">Algorithm Visualizer</h5>
+    <!-- * body and navbar -->
+    <div class="body-nav-holder">
+        
+        <!-- * navbar -->
+        <nav class="navigation-bar">
+            <h6 id="project-name">Algorithm Visualizer</h6>
+    
+            <div id="algorithm-choices">
+                <button id="algo-1" onclick="selectAlgorithm(1)" type="button" class="btn btn-secondary btn-sm">Bubble Sort</button>
+                <button id="algo-2" onclick="selectAlgorithm(2)" type="button" class="btn btn-secondary btn-sm">Heap Sort</button>
+                <button id="algo-3" onclick="selectAlgorithm(3)" type="button" class="btn btn-secondary btn-sm">Insertion Sort</button>
+                <button id="algo-4" onclick="selectAlgorithm(4)" type="button" class="btn btn-secondary btn-sm">Merge Sort</button>
+            </div>
+        </nav>
 
-        <div id="algorithm-choices">
-            <button id="algo-1" onclick="selectAlgorithm(1)" type="button" class="btn btn-secondary btn-sm">Bubble Sort</button>
-            <button id="algo-2" onclick="selectAlgorithm(2)" type="button" class="btn btn-secondary btn-sm">Heap Sort</button>
-            <button id="algo-3" onclick="selectAlgorithm(3)" type="button" class="btn btn-secondary btn-sm">Insertion Sort</button>
-            <button id="algo-4" onclick="selectAlgorithm(4)" type="button" class="btn btn-secondary btn-sm">Merge Sort</button>
+        <!-- * body -->
+        <div class="playground">
+            
+            <div class="test-data-container">
+                <div id="tst-d1" class="test-data"></div>
+                <div id="tst-d2" class="test-data"></div>
+                <div id="tst-d3" class="test-data"></div>
+                <div id="tst-d4" class="test-data"></div>
+                <div id="tst-d5" class="test-data"></div>
+                <div id="tst-d6" class="test-data"></div>
+                <div id="tst-d7" class="test-data"></div>
+                <div id="tst-d8" class="test-data"></div>
+                <div id="tst-d9" class="test-data"></div>
+                <div id="tst-d10" class="test-data"></div>
+            </div>
+
         </div>
-    </nav>
 
-    <!-- * body -->
+
+    </div>
+
 
     <!-- * footer -->
     <footer class="footer-bar">
@@ -49,8 +72,6 @@
             </div>
 
         </div>
-
-
     </footer>
 
     <!-- ! Bootstrap JS -->
@@ -58,6 +79,7 @@
 
     <!-- ! JavaScript -->
     <script src="js/main.js"></script>
+    <script src="js/algorithms.js"></script>
 
 </body>
 
