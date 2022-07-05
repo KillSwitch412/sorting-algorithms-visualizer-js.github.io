@@ -58,15 +58,39 @@ p {
 .test-data {
     background-color: #3CBEB4;
     display: flex;
-    color: #333333;
-    padding: 0px 5px;
+    padding: 0px 3px;
 
     border-left: 1px solid #333333;
     border-right: 1px solid #333333;
+
+    position: relative;
+}
+
+.test-data .tooltiptext {
+    visibility: hidden;
+    padding: 5px;
+    font-size: 12px;
+    background-color: #1e1e1e;
+    border-radius: 5px;
+    border: 0.5px solid #3CBEB4;
+
+    position: absolute;
+    z-index: 1;
+
+    /* top: 100%;
+    left: 0%;
+    margin-left: -10px; */
+
+    top: 50%;
+    right: 250%;
 }
 
 .test-data:hover {
     background-color: #F6F8F8;
+}
+
+.test-data:hover .tooltiptext {
+    visibility: visible;
 }
 
 #tst-d1 {
