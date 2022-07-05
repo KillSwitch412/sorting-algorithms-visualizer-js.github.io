@@ -39,15 +39,29 @@ p {
     justify-content: space-between;
 }
 
+#algorithm-choices {
+    padding: 3px;
+    border: 1px solid grey;
+    border-radius: 7px;
+}
+
+#length-and-range {
+    padding: 3px;
+    border: 1px solid grey;
+    border-radius: 7px;
+}
+
 .playground {
     width: 80%;
-    
+    height: 550px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
 
     /* ! remove later */
     /* border: 1px solid #F6F8F8; */
+    border-bottom: 1px solid grey;
 }
 
 #test-data-container {
@@ -58,7 +72,33 @@ p {
 .test-data {
     background-color: #3CBEB4;
     display: flex;
+
+    /* for 250 values */
+    /* padding: 0px 1.4px; */
+
+    /* for 200 values */
+    /* padding: 0px 2px; */
+
+    /* for 150 values */
     padding: 0px 3px;
+
+    /* for 120 values */
+    /* padding: 0px 4px; */
+
+    /* for 100 values */
+    /* padding: 0px 5px; */
+
+    /* for 80 values */
+    /* padding: 0px 6px; */
+
+    /* for 60 values */
+    /* padding: 0px 9px; */
+
+    /* for 40 values */
+    /* padding: 0px 12px; */
+
+    /* for 30 values */
+    /* padding: 0px 15px; */
 
     border-left: 1px solid #333333;
     border-right: 1px solid #333333;
@@ -88,12 +128,6 @@ p {
 
 .test-data:hover .tooltiptext {
     visibility: visible;
-}
-
-#algorithm-choices {
-    padding: 3px;
-    border: 1px solid grey;
-    border-radius: 7px;
 }
 
 .footer-bar {

@@ -24,7 +24,46 @@
         <!-- * navbar -->
         <nav class="navigation-bar">
             <h6 id="project-name">Algorithm Visualizer</h6>
+
+            <div id="length-and-range">
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Array length
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">30</a></li>
+                        <li><a class="dropdown-item" href="#">40</a></li>
+                        <li><a class="dropdown-item" href="#">60</a></li>
+                        <li><a class="dropdown-item" href="#">80</a></li>
+                        <li><a class="dropdown-item" href="#">100</a></li>
+                        <li><a class="dropdown-item" href="#">120</a></li>
+                        <li><a class="dropdown-item" href="#">150</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                    </ul>
+                </div>
     
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Value Range
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">0 - 40</a></li>
+                        <li><a class="dropdown-item" href="#">0 - 100</a></li>
+                        <li><a class="dropdown-item" href="#">50 - 120</a></li>
+                        <li><a class="dropdown-item" href="#">0 - 150</a></li>
+                        <li><a class="dropdown-item" href="#">0 - 150</a></li>
+                        <li><a class="dropdown-item" href="#">0 - 150</a></li>
+                        <li><a class="dropdown-item" href="#">0 - 150</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+
+
             <div id="algorithm-choices">
                 <button id="algo-1" onclick="selectAlgorithm(1)" type="button" class="btn btn-secondary btn-sm">Bubble Sort</button>
                 <button id="algo-2" onclick="selectAlgorithm(2)" type="button" class="btn btn-secondary btn-sm">Heap Sort</button>
@@ -51,7 +90,6 @@
                 <!-- <button type="button" class="btn btn-danger btn-sm">Stop</button> -->
                 <button id="start-btn" onclick="startAlgo()" type="button" class="btn btn-success btn-sm">Start</button>
             </div>
-
         </div>
     </footer>
 
