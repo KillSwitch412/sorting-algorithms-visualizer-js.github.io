@@ -20,29 +20,48 @@ function generateRandomArray(size) {
         array.push(Math.floor(Math.random() * 500) + 1);
     }
 
+    console.log(`generated random array of size ${size}`)
     return array;
 }
 
-displayArray();
+displayArray(numbers);
 
 // * display array to screen
-function displayArray() {
+function displayArray(array) {
     
     let test_data_container = document.getElementById('test-data-container');
 
-    for (let i = 0; i < numbers.length; i++) {
+    for (let i = 0; i < array.length; i++) {
 
         let new_data_node = `<div id="tst-d${i}" class="test-data">
-        <div class="tooltiptext">${numbers[i]}</div>
+        <div class="tooltiptext">${array[i]}</div>
         </div>`;
 
         test_data_container.innerHTML += new_data_node;
-        document.getElementById(`tst-d${i}`).style.height = numbers[i] + 'px';
+        document.getElementById(`tst-d${i}`).style.height = array[i] + 'px';
 
     }
 
 }
 
+// * traverse through array
+async function traverseArray(array) {
+    for (let i = 0; i < array.length; i++) {
+        let data_node = document.getElementById(`tst-d${i}`);
+        
+        // change color to black
+        data_node.style.backgroundColor = '#1e1e1e';
+
+        await sleep(30);
+
+        // change back to normal
+        data_node.style.backgroundColor = '#3CBEB4';
+    }
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 
 // * for selecting and de-selecting an algorithm
@@ -66,4 +85,38 @@ function selectAlgorithm(algoNumber) {
     selectedAlgo = algoNumber;
 
     console.log(`selected algo-${algoNumber} (${algorithmMap[algoNumber]})`)
+}
+
+async function startAlgo() {
+    
+    // * disable start and reset button
+    let start_btn = document.getElementById('start-btn');
+    let reset_btn = document.getElementById('reset-btn');
+
+    start_btn.classList.add('disabled');
+    reset_btn.classList.add('disabled');
+
+    start_btn.classList.remove('btn-success');
+    reset_btn.classList.remove('btn-warning');
+    
+    start_btn.classList.remove('active');
+
+    start_btn.classList.add('btn-outline-success');
+    reset_btn.classList.add('btn-outline-warning');
+
+    start_btn.style.boxShadow = "none";
+
+    // * traverse array
+    await traverseArray(numbers);
+
+    // * re-enable start and reset button
+    start_btn.classList.remove('disabled');
+    reset_btn.classList.remove('disabled');
+
+    start_btn.classList.remove('btn-outline-success');
+    reset_btn.classList.remove('btn-outline-warning');
+
+    start_btn.classList.add('btn-success');
+    reset_btn.classList.add('btn-warning');
+
 }
