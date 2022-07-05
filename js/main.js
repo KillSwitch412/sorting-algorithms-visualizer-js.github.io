@@ -11,11 +11,47 @@ let selectedAlgo = 1;
 // * selecting bubble sort as default algorithn
 selectAlgorithm(selectedAlgo);
 
-let generatedData = generateRandomArray(150, 1, 100);
+let defaultSize = 100;
+let defaultMin = 1;
+let defaultMax = 500;
+
+// * default data
+let generatedData = generateRandomArray(defaultSize, defaultMin, defaultMax);
 var numbers = generatedData['array'];
 var largest = generatedData['largest'];
 
-function generateRandomArray(size, min, max) {
+// * called when user sets (new array size) or (new calue range)
+// * the ways it works, 
+// * if user provided new size, the min and max equals the last chosen or default value
+// * 
+function setArrayAndValueConstraintsAndDisplay(size = defaultSize, min = defaultMin, max = defaultMax) {    
+
+    // * generating new array with new constraints
+    generatedData = generateRandomArray(size, min, max);
+    numbers = generatedData['array'];
+    largest = generatedData['largest'];
+
+    clearScreen();
+    displayArray(numbers, largest);
+
+    // * setting new values
+    defaultSize = size;
+    defaultMin = min;
+    defaultMax = max;
+    
+}
+
+function generateArrayWithCustomSize() {
+    let customSize = document.getElementById('custom-size-input').value;
+
+    if (customSize > 200) {
+        return;
+    }
+
+    setArrayAndValueConstraintsAndDisplay(size = customSize);
+}
+
+function generateRandomArray(size = defaultSize, min = defaultMin, max = defaultMax) {
     let array = [];
     let largest = 0;
 
@@ -41,6 +77,11 @@ function generateRandomArray(size, min, max) {
     };
 }
 
+function clearScreen() {
+    let test_data_container = document.getElementById('test-data-container');
+    test_data_container.innerHTML = " ";
+}
+
 displayArray(numbers, largest);
 
 // * this function displays the array visualy on the screen
@@ -48,6 +89,10 @@ displayArray(numbers, largest);
 // * and all others relative to it
 function displayArray(array, largest) {
 
+    // * adapting width of the bars
+    let padding = getAppropriatePadding(array.length);
+
+    // * playground
     let test_data_container = document.getElementById('test-data-container');
 
     for (let i = 0; i < array.length; i++) {
@@ -61,7 +106,29 @@ function displayArray(array, largest) {
         let height_relative_to_largest = (array[i] / largest) * 550;
 
         document.getElementById(`tst-d${i}`).style.height = height_relative_to_largest + 'px';
+        document.getElementById(`tst-d${i}`).style.padding = padding;
+    }
 
+}
+
+function getAppropriatePadding(size) {
+    
+    if (size <= 30) {
+        return "0px 15px"        
+    } else if (size <= 40) {
+        return "0px 12px"
+    } else if (size <= 60) {
+        return "0px 9px"
+    } else if (size <= 80) {
+        return "0px 6px"
+    } else if (size <= 100) {
+        return "0px 5px"
+    } else if (size <= 120) {
+        return "0px 4px"
+    } else if (size <= 150) {
+        return "0px 3px"
+    } else {
+        return "0px 2px"
     }
 
 }

@@ -60,7 +60,7 @@ p {
     align-items: center;
 
     /* ! remove later */
-    /* border: 1px solid #F6F8F8; */
+    border: 1px solid #F6F8F8;
     border-bottom: 1px solid grey;
 }
 
@@ -108,7 +108,6 @@ p {
 
 .test-data .tooltiptext {
     visibility: hidden;
-    /* min-width: 150px; */
     padding: 8px;
     font-size: 20px;
     background-color: #1e1e1e;
