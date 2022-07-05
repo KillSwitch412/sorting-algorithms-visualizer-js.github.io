@@ -50,7 +50,7 @@ p {
     /* border: 1px solid #F6F8F8; */
 }
 
-.test-data-container {
+#test-data-container {
     display: flex;
     flex-direction: row;
 }
@@ -68,18 +68,15 @@ p {
 
 .test-data .tooltiptext {
     visibility: hidden;
-    padding: 5px;
+    /* min-width: 150px; */
+    padding: 10px;
     font-size: 12px;
     background-color: #1e1e1e;
-    border-radius: 5px;
+    border-radius: 4px;
     border: 0.5px solid #3CBEB4;
 
     position: absolute;
     z-index: 1;
-
-    /* top: 100%;
-    left: 0%;
-    margin-left: -10px; */
 
     top: 50%;
     right: 250%;
@@ -91,37 +88,6 @@ p {
 
 .test-data:hover .tooltiptext {
     visibility: visible;
-}
-
-#tst-d1 {
-    height: 69px;
-}
-#tst-d2 {
-    height: 150px;
-}
-#tst-d3 {
-    height:75px;
-}
-#tst-d4 {
-    height: 90px;
-}
-#tst-d5 {
-    height: 70px;
-}
-#tst-d6 {
-    height: 50px;
-}
-#tst-d7 {
-    height: 250px;
-}
-#tst-d8 {
-    height:20px;
-}
-#tst-d9 {
-    height: 55px;
-}
-#tst-d10 {
-    height: 80px;
 }
 
 #algorithm-choices {
@@ -141,7 +107,7 @@ p {
 }
 
 .controller-btns {
-    min-width: 300px;
+    min-width: 350px;
     display: flex;
     justify-content: space-between;
 }
