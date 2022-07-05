@@ -11,14 +11,17 @@ let selectedAlgo = 1;
 // * selecting bubble sort as default algorithn
 selectAlgorithm(selectedAlgo);
 
-let defaultSize = 100;
+let defaultSize = 40;
 let defaultMin = 1;
-let defaultMax = 500;
+let defaultMax = 100;
 
 // * default data
 let generatedData = generateRandomArray(defaultSize, defaultMin, defaultMax);
 var numbers = generatedData['array'];
 var largest = generatedData['largest'];
+var smallest = generatedData['smallest'];
+
+displayArray(numbers, largest, smallest, defaultMin, defaultMax);
 
 // * called when user sets (new array size) or (new calue range)
 // * the ways it works, 
@@ -30,9 +33,10 @@ function setArrayAndValueConstraintsAndDisplay(size = defaultSize, min = default
     generatedData = generateRandomArray(size, min, max);
     numbers = generatedData['array'];
     largest = generatedData['largest'];
+    smallest = generatedData['smallest'];
 
     clearScreen();
-    displayArray(numbers, largest);
+    displayArray(numbers, largest, smallest, min, max);
 
     // * setting new values
     defaultSize = size;
@@ -51,12 +55,19 @@ function generateArrayWithCustomSize() {
     setArrayAndValueConstraintsAndDisplay(size = customSize);
 }
 
+function generateArrayWithCustomRange() {
+    let customMax = parseInt(document.getElementById('custom-range-input').value);
+
+    setArrayAndValueConstraintsAndDisplay(size = defaultSize, min = defaultMin, max = customMax);
+}
+
 function generateRandomArray(size = defaultSize, min = defaultMin, max = defaultMax) {
     let array = [];
     let largest = 0;
+    let smallest = max;
 
     for (let i = 0; i < size; i++) {
-        let randomVal = (Math.random() * max) + min;
+        let randomVal = (Math.random() * max) + 1;
 
         // * if val greater than max
         // ? sometimes happens due to rounding
@@ -67,6 +78,10 @@ function generateRandomArray(size = defaultSize, min = defaultMin, max = default
         if (randomVal > largest) {
             largest = array[i];
         }
+
+        if (randomVal < smallest) {
+            smallest = randomVal;
+        }
     }
 
     console.log(`generated random array of size ${size}`)
@@ -74,6 +89,7 @@ function generateRandomArray(size = defaultSize, min = defaultMin, max = default
     return {
         'array': array,
         'largest': largest,
+        'smallest': smallest,
     };
 }
 
@@ -82,12 +98,10 @@ function clearScreen() {
     test_data_container.innerHTML = " ";
 }
 
-displayArray(numbers, largest);
-
 // * this function displays the array visualy on the screen
 // * with largest value taking 550px,
 // * and all others relative to it
-function displayArray(array, largest) {
+function displayArray(array, largest, smallest, min, max) {
 
     // * adapting width of the bars
     let padding = getAppropriatePadding(array.length);
@@ -108,6 +122,12 @@ function displayArray(array, largest) {
         document.getElementById(`tst-d${i}`).style.height = height_relative_to_largest + 'px';
         document.getElementById(`tst-d${i}`).style.padding = padding;
     }
+
+    // * displaying other data
+    document.getElementById('array-size').innerHTML = array.length;
+    document.getElementById('value-range').innerHTML = `Between ${min} to ${max}`;
+    document.getElementById('largest-value').innerHTML = largest.toFixed(1);
+    document.getElementById('smallest-value').innerHTML = smallest.toFixed(1);
 
 }
 

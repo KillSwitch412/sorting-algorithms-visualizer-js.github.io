@@ -60,7 +60,7 @@ p {
     align-items: center;
 
     /* ! remove later */
-    border: 1px solid #F6F8F8;
+    /* border: 1px solid #F6F8F8; */
     border-bottom: 1px solid grey;
 }
 
@@ -139,10 +139,17 @@ p {
     justify-content: space-between;
 }
 
+.bold-text {
+    color: #3CBEB4;
+    font-weight: bold;
+}
+
 .controller-btns {
     display: flex;
     justify-content: space-between;
 }
+
+
 
 /* button {
     padding: 5px 10px;

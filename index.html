@@ -55,21 +55,16 @@
                         Value Range
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">0 - 40</a></li>
-                        <li><a class="dropdown-item" href="#">0 - 100</a></li>
-                        <li><a class="dropdown-item" href="#">50 - 120</a></li>
-                        <li><a class="dropdown-item" href="#">0 - 150</a></li>
-                        <li><a class="dropdown-item" href="#">0 - 150</a></li>
-                        <li><a class="dropdown-item" href="#">0 - 150</a></li>
-                        <li><a class="dropdown-item" href="#">0 - 150</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        <div class="m-2 mb-0 d-grid">
+                            <input id="custom-min-input" class="form-control-sm" type="number" placeholder="Start is 1" disabled>
+                            <input id="custom-range-input" class="form-control-sm mt-2" type="number" placeholder="End">
+                            <button onclick="generateArrayWithCustomRange()" type="button" class="btn btn-success btn-sm mt-2">Apply</button>
+                        </div>
                     </ul>
                 </div>
 
                 <button id="regen-btn" onclick="setArrayAndValueConstraintsAndDisplay()" type="button" class="btn btn-secondary btn-sm">ReGenerate</button>
                 
-
             </div>
 
 
@@ -91,7 +86,11 @@
 
     <!-- * footer -->
     <footer class="footer-bar">
-        <p>Time Lapsed: 00.00s</p>
+        <p>Array Size: <span id="array-size" class="bold-text">100</span></p>
+        <p>Value Range: <span id="value-range" class="bold-text">Between 0 to 100</span></p>
+        <p>Largest value: <span id="largest-value" class="bold-text">100</span></p>
+        <p>Smallest value: <span id="smallest-value" class="bold-text">0</span></p>
+        <p>Time Lapsed: <span id="time-lapsed" class="bold-text">00.00s</span></p>
 
         <div class="controller-btns">
             <div>
