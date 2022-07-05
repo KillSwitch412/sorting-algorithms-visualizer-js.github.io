@@ -3,6 +3,7 @@ let algorithmMap = {
     2: 'Heap Sort',
     3: 'Insertion Sort',
     4: 'Merge Sort',
+    5: 'Quick Sort',
 }
 
 // * default selected algorithm
@@ -23,7 +24,7 @@ var smallest = generatedData['smallest'];
 
 displayArray(numbers, largest, smallest, defaultMin, defaultMax);
 
-// * called when user sets (new array size) or (new calue range)
+// * called when user sets (new array size)
 // * the ways it works, 
 // * if user provided new size, the min and max equals the last chosen or default value
 // * 
@@ -55,11 +56,11 @@ function generateArrayWithCustomSize() {
     setArrayAndValueConstraintsAndDisplay(size = customSize);
 }
 
-function generateArrayWithCustomRange() {
-    let customMax = parseInt(document.getElementById('custom-range-input').value);
+// function generateArrayWithCustomRange() {
+//     let customMax = parseInt(document.getElementById('custom-range-input').value);
 
-    setArrayAndValueConstraintsAndDisplay(size = defaultSize, min = defaultMin, max = customMax);
-}
+//     setArrayAndValueConstraintsAndDisplay(size = defaultSize, min = defaultMin, max = customMax);
+// }
 
 function generateRandomArray(size = defaultSize, min = defaultMin, max = defaultMax) {
     let array = [];
@@ -133,10 +134,18 @@ function displayArray(array, largest, smallest, min, max) {
 
 function getAppropriatePadding(size) {
     
-    if (size <= 30) {
-        return "0px 15px"        
+    if (size <= 10) {
+        return "0px 38px"        
+    } else if (size <= 15) {
+        return "0px 32px"        
+    } else if (size <= 20) {
+        return "0px 28px"        
+    } else if (size <= 25) {
+        return "0px 23px"        
+    } else if (size <= 30) {
+        return "0px 18px"        
     } else if (size <= 40) {
-        return "0px 12px"
+        return "0px 14px"
     } else if (size <= 60) {
         return "0px 9px"
     } else if (size <= 80) {
@@ -152,21 +161,6 @@ function getAppropriatePadding(size) {
     }
 
 }
-
-// * traverse through array
-// async function traverseArray(array) {
-//     for (let i = 0; i < array.length; i++) {
-//         let data_node = document.getElementById(`tst-d${i}`);
-
-//         // change color to black
-//         data_node.style.backgroundColor = '#1e1e1e';
-
-//         await sleep(30);
-
-//         // change back to normal
-//         data_node.style.backgroundColor = '#3CBEB4';
-//     }
-// }
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -237,7 +231,7 @@ async function performBubbleSort(array) {
     
     let lastSorted = array.length - 1;
     let sorted = 1;
-    
+
     for (let times = 0; times < array.length; times++) {
 
         let swapped = false;
