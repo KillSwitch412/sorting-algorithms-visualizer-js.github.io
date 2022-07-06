@@ -32,7 +32,7 @@
             <div id="length-and-range">
 
                 <div class="btn-group">
-                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button id="change-size-btn" type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         Array length
                     </button>
                     <ul class="dropdown-menu">
@@ -122,7 +122,26 @@
         <p>Largest value: <span id="largest-value" class="bold-text">100</span></p>
         <p>Smallest value: <span id="smallest-value" class="bold-text">0</span></p>
         <p>Value Range: <span id="value-range" class="bold-text">Between 0 to 100</span></p>
-        <p>Pause: <span id="traverse-speed" class="bold-text">10</span>ms</p>
+
+        <!-- ! opens drop up -->
+
+
+        <!-- ! dropup data -->
+        <div class="btn-group dropup">
+            <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Pause (Determines Speed): <span id="pause-duration" class="bold-text">10</span> ms
+            </button>
+            <ul class="dropdown-menu">
+                <li onclick="setPauseDuration(10)"><a class="dropdown-item" href="#"><span class="bold-text">10</span> ms</a></li>
+                <li onclick="setPauseDuration(20)"><a class="dropdown-item" href="#"><span class="bold-text">20</span> ms</a></li>
+                <li onclick="setPauseDuration(30)"><a class="dropdown-item" href="#"><span class="bold-text">30</span> ms</a></li>
+                <li onclick="setPauseDuration(40)"><a class="dropdown-item" href="#"><span class="bold-text">40</span> ms</a></li>
+                <li onclick="setPauseDuration(50)"><a class="dropdown-item" href="#"><span class="bold-text">50</span> ms</a></li>
+                <li onclick="setPauseDuration(100)"><a class="dropdown-item" href="#"><span class="bold-text">100</span> ms</a></li>
+                <li onclick="setPauseDuration(150)"><a class="dropdown-item" href="#"><span class="bold-text">150</span> ms</a></li>
+                <li onclick="setPauseDuration(200)"><a class="dropdown-item" href="#"><span class="bold-text">200</span> ms</a></li>
+            </ul>
+        </div>
 
         <div class="controller-btns">
             <div>
@@ -137,7 +156,6 @@
 
     <!-- ! JavaScript -->
     <script src="js/main.js"></script>
-    <script src="js/algorithms.js"></script>
 
 </body>
 

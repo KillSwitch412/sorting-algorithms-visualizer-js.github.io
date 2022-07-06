@@ -12,7 +12,7 @@ let algorithmMap = {
 }
 
 // * default selected algorithm
-let selectedAlgo = 1;
+let selectedAlgo = 6;
 
 // * selecting bubble sort as default algorithn
 selectAlgorithm(selectedAlgo);
@@ -20,6 +20,7 @@ selectAlgorithm(selectedAlgo);
 let defaultSize = 60;
 let defaultMin = 1;
 let defaultMax = 100;
+var pauseDuration = 10;
 
 // * generating and displaying new random array at every refresh
 let generatedData = generateRandomArray(defaultSize, defaultMin, defaultMax);
@@ -36,8 +37,15 @@ displayArray(numbers, largest, smallest, defaultMin, defaultMax);
 
 
 
-// ! ---------- ARRAY GENERATING AND DISPLAY RELATED FUNCTIONS ---------- 
-// ! ---------- ARRAY GENERATING AND DISPLAY RELATED FUNCTIONS ---------- 
+
+
+
+
+
+
+
+// ! ---------- ARRAY GENERATING, EXECUTING SPEED AND DISPLAY RELATED FUNCTIONS ---------- 
+// ! ---------- ARRAY GENERATING, EXECUTING SPEED AND DISPLAY RELATED FUNCTIONS ---------- 
 
 // ! THE MAIN FUNCTION FOR GENERATING THE ARRAY
 // * returns array, largest num, smallest num
@@ -107,9 +115,16 @@ function generateArrayWithCustomSize() {
     setArrayAndValueConstraintsAndDisplay(size = customSize);
 }
 
+// ! clears playground
 function clearScreen() {
     let test_data_container = document.getElementById('test-data-container');
     test_data_container.innerHTML = " ";
+}
+
+// ! to change pause duration
+function setPauseDuration(ms) {
+    pauseDuration = ms;
+    document.getElementById('pause-duration').innerHTML = pauseDuration;
 }
 
 // ! this function displays the array visualy on the screen
@@ -142,11 +157,14 @@ function displayArray(array, largest, smallest, min, max) {
     document.getElementById('value-range').innerHTML = `Between ${min} to ${max}`;
     document.getElementById('largest-value').innerHTML = largest.toFixed(1);
     document.getElementById('smallest-value').innerHTML = smallest.toFixed(1);
+    document.getElementById('pause-duration').innerHTML = pauseDuration;
 
 }
 
 // * used for getting the padding that is applied to the bars
 // * for their width
+// * less bars => thick bars
+// * more bars => thin bars
 function getAppropriatePadding(size) {
 
     if (size <= 10) {
@@ -177,7 +195,7 @@ function getAppropriatePadding(size) {
 
 }
 
-// * to stop the program 
+// * to pause the program 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -234,14 +252,30 @@ function selectAlgorithm(algoNumber) {
 // ! for starting the selected algorithm
 async function startAlgo() {
 
-    // * disable start button
+    // * disable [start], [changeSize], [refresh] buttons
     let start_btn = document.getElementById('start-btn');
+    let size_btn = document.getElementById('change-size-btn');
+    let refresh_btn = document.getElementById('regen-btn');
+
     start_btn.classList.add('disabled');
+    size_btn.classList.add('disabled');
+    refresh_btn.classList.add('disabled');
+
     start_btn.classList.remove('btn-success');
+    size_btn.classList.remove('btn-secondary');
+    refresh_btn.classList.remove('btn-secondary');
+
     start_btn.classList.remove('active');
+    size_btn.classList.remove('active');
+    refresh_btn.classList.remove('active');
+
     start_btn.classList.add('btn-outline-success');
+    size_btn.classList.add('btn-outline-secondary');
+    refresh_btn.classList.add('btn-outline-secondary');
+
     start_btn.style.boxShadow = "none";
 
+    // * start executing the selected algo
     switch (selectedAlgo) {
         case 1:
             await performBubbleSort(numbers);
@@ -260,13 +294,22 @@ async function startAlgo() {
             break;
 
         case 6:
+            await performSelectionSort(numbers);
             break;
     }
 
     // * re-enable start button
     start_btn.classList.remove('disabled');
+    size_btn.classList.remove('disabled');
+    refresh_btn.classList.remove('disabled');
+
     start_btn.classList.remove('btn-outline-success');
+    size_btn.classList.remove('btn-outline-secondary');
+    refresh_btn.classList.remove('btn-outline-secondary');
+
     start_btn.classList.add('btn-success');
+    size_btn.classList.add('btn-secondary');
+    refresh_btn.classList.add('btn-secondary');
 
 }
 
@@ -277,7 +320,7 @@ async function performBubbleSort(array) {
     let lastSorted = array.length - 1;
     let sorted = 1;
 
-    for (let times = 0; times < array.length; times++) {
+    for (let outerLoop = 0; outerLoop < array.length; outerLoop++) {
 
         let swapped = false;
 
@@ -291,11 +334,12 @@ async function performBubbleSort(array) {
             let node1_innerHTML = data_node1.innerHTML;
             let node2_innerHTML = data_node2.innerHTML;
 
-            // * change color to black
+            // * change color to orange
             data_node1.style.backgroundColor = '#ffc107';
             data_node2.style.backgroundColor = '#ffc107';
 
-            await sleep(10);
+            // * adding pause
+            await sleep(pauseDuration);
 
             if (array[i] > array[i + 1]) {
 
@@ -331,6 +375,78 @@ async function performBubbleSort(array) {
 
         document.getElementById(`tst-d${lastSorted}`).style.backgroundColor = "#6610f2";
         lastSorted = lastSorted - 1;
+    }
+
+}
+
+async function performSelectionSort(array) {
+    
+    // stores the index of the last sorted number
+    let lastSorted = -1;
+
+    let smallestValIndex = 0;
+    let smallestVal = array[smallestValIndex];
+
+    for (let outerLoop = 0; outerLoop < array.length; outerLoop++) {
+        
+        smallestValIndex = outerLoop;
+        smallestVal = array[smallestValIndex];
+
+        for (let i = outerLoop; i < array.length; i++) {
+            
+            let current_node = document.getElementById(`tst-d${i}`);
+
+            // * change color to orange
+            current_node.style.backgroundColor = '#ffc107';
+
+            // * finding smallest value
+            if (array[i] < smallestVal) {
+                
+                // * change color of last smallest value to the normal color
+                document.getElementById(`tst-d${smallestValIndex}`).style.backgroundColor = '#3CBEB4';
+
+                // * new smllest value
+                smallestVal = array[i];
+                smallestValIndex = i;
+                
+                // * give purple to new smallest value
+                current_node.style.backgroundColor = '#6610f2';
+
+                // * adding pause
+                await sleep(pauseDuration);
+                continue;
+            }
+            
+            // * adding pause
+            await sleep(pauseDuration);
+
+            // * change back to normal
+            current_node.style.backgroundColor = '#3CBEB4';
+        }
+
+        lastSorted = lastSorted + 1;
+
+        // * swapping heights 
+        let data_node1 = document.getElementById(`tst-d${lastSorted}`);
+        let node1_height = data_node1.style.height;
+        let node1_innerHTML = data_node1.innerHTML;
+
+        let data_node2 = document.getElementById(`tst-d${smallestValIndex}`);
+        let node2_height = data_node2.style.height;
+        let node2_innerHTML = data_node2.innerHTML;
+
+        data_node1.style.height = node2_height;
+        data_node1.innerHTML = node2_innerHTML;
+        data_node1.style.backgroundColor = '#6610f2';
+
+        data_node2.style.height = node1_height;
+        data_node2.innerHTML = node1_innerHTML;
+        data_node2.style.backgroundColor = '#3CBEB4';
+        
+        // * swapping array values
+        let temp = array[lastSorted];
+        array[lastSorted] = array[smallestValIndex];
+        array[smallestValIndex] = temp;
     }
 
 }
