@@ -4,15 +4,15 @@
 
 let algorithmMap = {
     1: 'Bubble Sort',
-    2: 'Heap Sort',
+    2: 'Selection Sort',
     3: 'Insertion Sort',
     4: 'Merge Sort',
     5: 'Quick Sort',
-    6: 'Selection Sort',
+    6: 'Heap Sort',
 }
 
 // * default selected algorithm
-let selectedAlgo = 6;
+let selectedAlgo = 1;
 
 // * selecting bubble sort as default algorithn
 selectAlgorithm(selectedAlgo);
@@ -282,6 +282,7 @@ async function startAlgo() {
             break;
 
         case 2:
+            await performSelectionSort(numbers);
             break;
 
         case 3:
@@ -294,7 +295,6 @@ async function startAlgo() {
             break;
 
         case 6:
-            await performSelectionSort(numbers);
             break;
     }
 
@@ -388,7 +388,7 @@ async function performSelectionSort(array) {
     let smallestVal = array[smallestValIndex];
 
     for (let outerLoop = 0; outerLoop < array.length; outerLoop++) {
-        
+            
         smallestValIndex = outerLoop;
         smallestVal = array[smallestValIndex];
 
@@ -441,7 +441,9 @@ async function performSelectionSort(array) {
 
         data_node2.style.height = node1_height;
         data_node2.innerHTML = node1_innerHTML;
-        data_node2.style.backgroundColor = '#3CBEB4';
+        if (node1_height != node2_height) {
+            data_node2.style.backgroundColor = '#3CBEB4';
+        }
         
         // * swapping array values
         let temp = array[lastSorted];

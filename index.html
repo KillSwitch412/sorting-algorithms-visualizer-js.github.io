@@ -61,11 +61,11 @@
 
             <div id="algorithm-choices">
                 <button id="algo-1" onclick="selectAlgorithm(1)" type="button" class="btn btn-secondary btn-sm">Bubble Sort</button>
-                <button id="algo-2" onclick="selectAlgorithm(2)" type="button" class="btn btn-secondary btn-sm">Heap Sort</button>
-                <button id="algo-3" onclick="selectAlgorithm(3)" type="button" class="btn btn-secondary btn-sm">Insertion Sort</button>
-                <button id="algo-4" onclick="selectAlgorithm(4)" type="button" class="btn btn-secondary btn-sm">Merge Sort</button>
-                <button id="algo-5" onclick="selectAlgorithm(5)" type="button" class="btn btn-secondary btn-sm">Quick Sort</button>
-                <button id="algo-6" onclick="selectAlgorithm(6)" type="button" class="btn btn-secondary btn-sm">Selection Sort</button>
+                <button id="algo-2" onclick="selectAlgorithm(2)" type="button" class="btn btn-secondary btn-sm">Selection Sort</button>
+                <button id="algo-3" onclick="selectAlgorithm(3)" type="button" class="btn btn-secondary btn-sm disabled">Insertion Sort</button>
+                <button id="algo-4" onclick="selectAlgorithm(4)" type="button" class="btn btn-secondary btn-sm disabled">Merge Sort</button>
+                <button id="algo-5" onclick="selectAlgorithm(5)" type="button" class="btn btn-secondary btn-sm disabled">Quick Sort</button>
+                <button id="algo-6" onclick="selectAlgorithm(6)" type="button" class="btn btn-secondary btn-sm disabled">Heap Sort</button>
             </div>
 
             <div id="about-container">
@@ -140,6 +140,7 @@
                 <li onclick="setPauseDuration(100)"><a class="dropdown-item" href="#"><span class="bold-text">100</span> ms</a></li>
                 <li onclick="setPauseDuration(150)"><a class="dropdown-item" href="#"><span class="bold-text">150</span> ms</a></li>
                 <li onclick="setPauseDuration(200)"><a class="dropdown-item" href="#"><span class="bold-text">200</span> ms</a></li>
+                <li onclick="setPauseDuration(500)"><a class="dropdown-item" href="#"><span class="bold-text">500</span> ms</a></li>
             </ul>
         </div>
 
