@@ -8,7 +8,6 @@ let algorithmMap = {
     3: 'Insertion Sort',
     4: 'Merge Sort',
     5: 'Quick Sort',
-    6: 'Heap Sort',
 }
 
 // * default selected algorithm
@@ -224,7 +223,6 @@ function sleep(ms) {
 // ! ---------- ALGORITHM RELATED FUNCTIONS ---------- 
 // ! ---------- ALGORITHM RELATED FUNCTIONS ---------- 
 
-
 // * for selecting and de-selecting an algorithm
 function selectAlgorithm(algoNumber) {
 
@@ -379,6 +377,7 @@ async function performBubbleSort(array) {
 
 }
 
+// ! ---------- SELECTION SORT ----------
 async function performSelectionSort(array) {
     
     // stores the index of the last sorted number
@@ -450,5 +449,87 @@ async function performSelectionSort(array) {
         array[lastSorted] = array[smallestValIndex];
         array[smallestValIndex] = temp;
     }
+
+}
+
+let test_ms = [2, 4, 6, 1, 3, 5, 8, 7];
+console.log(performMergeSort(test_ms));
+
+// ! ---------- MERGE SORT ----------
+// * divides array to sub arrays by recursion
+function performMergeSort(array) {
+    
+    if (array.length <= 1) {
+        return array;
+    }
+
+    let mid = Math.floor(array.length / 2);    
+
+    // let leftArr = array.slice(0, mid);
+    let leftArr = [];
+    let realLeftArr = [];
+    for (let i = 0; i < mid; i++) {
+        leftArr.push(array[i]);        
+    }
+    
+    // let rightArr = array.slice(mid);
+    let rightArr = [];
+    for (let i = mid; i < array.length; i++) {
+        rightArr.push(array[i]);        
+    }
+
+    return mergeTwoSortedArrays(performMergeSort(leftArr), performMergeSort(rightArr));
+
+}
+
+let current_mergeSort = 0;
+let current_largestSort = 2;
+// 0, 1
+// 2, 3
+// 0, 1, 2, 3
+// 4, 5
+// 6, 7
+// 4, 5, 6, 7
+// 0, 1, 2, 3, 4, 5, 6, 7
+// 0, 1
+// 2, 3
+// 0, 1, 2, 3
+// 4, 5
+// 6, 7
+// 4, 5, 6, 7
+// 0, 1, 2, 3, 4, 5, 6, 7
+// 0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7
+
+// ! ---------- MERGE TWO SORTED ARRAYS ----------
+function mergeTwoSortedArrays(array1, array2) {
+
+    let i = 0;
+    let j = 0;
+
+    let result = [];
+
+    while (i < array1.length && j < array2.length) {
+
+        if (array1[i] <= array2[j]) {
+            result.push(array1[i]);
+            i++;
+        } else {
+            result.push(array2[j]);
+            j++;
+        }
+
+    }
+
+    while (i < array1.length) {
+        result.push(array1[i]);
+        i++;
+    }
+
+    while (j < array2.length) {
+        result.push(array2[j]);
+        j++;
+    }
+
+    return result;
 
 }
