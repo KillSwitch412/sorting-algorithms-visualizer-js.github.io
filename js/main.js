@@ -11,7 +11,7 @@ let algorithmMap = {
 }
 
 // * default selected algorithm
-let selectedAlgo = 1;
+let selectedAlgo = 4;
 
 // * selecting bubble sort as default algorithn
 selectAlgorithm(selectedAlgo);
@@ -287,6 +287,8 @@ async function startAlgo() {
             break;
 
         case 4:
+            console.log(numbers);
+            console.log(performMergeSort(numbers));
             break;
 
         case 5:
@@ -452,83 +454,157 @@ async function performSelectionSort(array) {
 
 }
 
-let test_ms = [2, 4, 6, 1, 3, 5, 8, 7];
-console.log(performMergeSort(test_ms));
-
 // ! ---------- MERGE SORT ----------
-// * divides array to sub arrays by recursion
 function performMergeSort(array) {
     
+    let realIndexArray = [];
+    for (let i = 0; i < array.length; i++) {
+        realIndexArray.push(i);
+    }
+
+    return mergeSort(array, realIndexArray);
+}
+
+// * divides array to sub arrays by recursion
+function mergeSort(array, realIndexArray) {
+    
+    // console.log('---------------');
+    // console.log('array');
+    // console.log(array);
+    // console.log('---------------');
+    // console.log('realIndexArray');
+    // console.log(realIndexArray);
+    // console.log('---------------');
+
     if (array.length <= 1) {
         return array;
     }
 
     let mid = Math.floor(array.length / 2);    
 
-    // let leftArr = array.slice(0, mid);
     let leftArr = [];
-    let realLeftArr = [];
+    let realIndexLeftArr = [];
     for (let i = 0; i < mid; i++) {
         leftArr.push(array[i]);        
+        realIndexLeftArr.push(realIndexArray[i]);
     }
     
-    // let rightArr = array.slice(mid);
     let rightArr = [];
+    let realIndexRightArr = [];
     for (let i = mid; i < array.length; i++) {
         rightArr.push(array[i]);        
+        realIndexRightArr.push(realIndexArray[i]);
     }
 
-    return mergeTwoSortedArrays(performMergeSort(leftArr), performMergeSort(rightArr));
-
+    return mergeTwoSortedArrays(mergeSort(leftArr, realIndexLeftArr), mergeSort(rightArr, realIndexRightArr), realIndexLeftArr, realIndexRightArr);
 }
 
-let current_mergeSort = 0;
-let current_largestSort = 2;
-// 0, 1
-// 2, 3
-// 0, 1, 2, 3
-// 4, 5
-// 6, 7
-// 4, 5, 6, 7
-// 0, 1, 2, 3, 4, 5, 6, 7
-// 0, 1
-// 2, 3
-// 0, 1, 2, 3
-// 4, 5
-// 6, 7
-// 4, 5, 6, 7
-// 0, 1, 2, 3, 4, 5, 6, 7
-// 0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7
 
 // ! ---------- MERGE TWO SORTED ARRAYS ----------
-function mergeTwoSortedArrays(array1, array2) {
+function mergeTwoSortedArrays(leftArr, rightArr, realIndexLeftArr, realIndexRightArr) {
+
+    
+    console.log('xxxxxxxxxxxxxxxxxxxxxxxxx');
+
+    console.log('leftArr');
+    console.log(leftArr);
+    console.log('realIndexLeftArr');
+    console.log(realIndexLeftArr);
+
+    console.log('xxxxxxxxxxxxxxxxxxxxxxxxx');
+
+    console.log('rightArr');
+    console.log(rightArr);
+    console.log('realIndexRightArr');
+    console.log(realIndexRightArr);
+
+    console.log('xxxxxxxxxxxxxxxxxxxxxxxxx');
 
     let i = 0;
     let j = 0;
 
     let result = [];
+    
+    // ! i think realIndex of sortedArray remains the old realIndex
 
-    while (i < array1.length && j < array2.length) {
+    while (i < leftArr.length && j < rightArr.length) {
 
-        if (array1[i] <= array2[j]) {
-            result.push(array1[i]);
+        let data_node1 = document.getElementById(`tst-d${realIndexLeftArr[i]}`);
+        let data_node2 = document.getElementById(`tst-d${realIndexRightArr[j]}`);
+
+        let node1_height = data_node1.style.height;
+        let node1_innerHTML = data_node1.innerHTML; 
+
+        let node2_height = data_node2.style.height;
+        let node2_innerHTML = data_node2.innerHTML;
+
+        // * changing color to orange
+        data_node1.style.backgroundColor = '#ffc107';
+        data_node2.style.backgroundColor = '#ffc107';
+
+        let node_pushed;
+
+        // await sleep(pauseDuration);
+
+        if (leftArr[i] <= rightArr[j]) {
+
+            // data_node1.style.height = node2_height;
+            // data_node1.innerHTML = node2_innerHTML;
+            // * they are sorted so change both to purple 
+            data_node1.style.backgroundColor = '#6610f2';
+            data_node2.style.backgroundColor = '#6610f2';
+            // data_node2.style.backgroundColor = '#3CBEB4';
+
+            // data_node2.style.height = node1_height;
+            // data_node2.innerHTML = node1_innerHTML;
+            // data_node2.style.backgroundColor = '#6610f2';
+
+            result.push(leftArr[i]);
+            node_pushed = document.getElementById(``);
             i++;
+
         } else {
-            result.push(array2[j]);
+
+            data_node1.style.height = node2_height;
+            data_node1.innerHTML = node2_innerHTML;
+            data_node1.style.backgroundColor = '#6610f2';
+
+            // ! newline
+            realIndexLeftArr[i] = realIndexRightArr[j];
+
+            data_node2.style.height = node1_height;
+            data_node2.innerHTML = node1_innerHTML;
+            data_node2.style.backgroundColor = '#6610f2';
+
+            result.push(rightArr[j]);
             j++;
         }
 
+        // data_node1.style.height = node2_height;
+        // data_node1.innerHTML = node2_innerHTML;
+        // data_node1.style.backgroundColor = '#6610f2';
+
+        // data_node2.style.height = node1_height;
+        // data_node2.innerHTML = node1_innerHTML;
+        // data_node2.style.backgroundColor = '#6610f2';
+
     }
 
-    while (i < array1.length) {
-        result.push(array1[i]);
+    while (i < leftArr.length) {
+        result.push(leftArr[i]);
         i++;
     }
 
-    while (j < array2.length) {
-        result.push(array2[j]);
+    while (j < rightArr.length) {
+        result.push(rightArr[j]);
         j++;
     }
+
+
+    console.log('result');
+    console.log(result);
+
+    console.log('xxxxxxxxxxxxxxxxxxxxxxxxx');
 
     return result;
 
