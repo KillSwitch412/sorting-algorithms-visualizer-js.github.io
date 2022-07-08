@@ -287,8 +287,7 @@ async function startAlgo() {
             break;
 
         case 4:
-            console.log(numbers);
-            console.log(performMergeSort(numbers));
+            performMergeSort(numbers);
             break;
 
         case 5:
@@ -468,14 +467,6 @@ function performMergeSort(array) {
 // * divides array to sub arrays by recursion
 function mergeSort(array, realIndexArray) {
     
-    // console.log('---------------');
-    // console.log('array');
-    // console.log(array);
-    // console.log('---------------');
-    // console.log('realIndexArray');
-    // console.log(realIndexArray);
-    // console.log('---------------');
-
     if (array.length <= 1) {
         return array;
     }
@@ -499,112 +490,143 @@ function mergeSort(array, realIndexArray) {
     return mergeTwoSortedArrays(mergeSort(leftArr, realIndexLeftArr), mergeSort(rightArr, realIndexRightArr), realIndexLeftArr, realIndexRightArr);
 }
 
-
 // ! ---------- MERGE TWO SORTED ARRAYS ----------
 function mergeTwoSortedArrays(leftArr, rightArr, realIndexLeftArr, realIndexRightArr) {
-
-    
-    console.log('xxxxxxxxxxxxxxxxxxxxxxxxx');
-
-    console.log('leftArr');
-    console.log(leftArr);
-    console.log('realIndexLeftArr');
-    console.log(realIndexLeftArr);
-
-    console.log('xxxxxxxxxxxxxxxxxxxxxxxxx');
-
-    console.log('rightArr');
-    console.log(rightArr);
-    console.log('realIndexRightArr');
-    console.log(realIndexRightArr);
-
-    console.log('xxxxxxxxxxxxxxxxxxxxxxxxx');
 
     let i = 0;
     let j = 0;
 
     let result = [];
-    
-    // ! i think realIndex of sortedArray remains the old realIndex
+    let data_object = {};
+    let startIndex = realIndexLeftArr[0];
 
     while (i < leftArr.length && j < rightArr.length) {
 
-        let data_node1 = document.getElementById(`tst-d${realIndexLeftArr[i]}`);
-        let data_node2 = document.getElementById(`tst-d${realIndexRightArr[j]}`);
-
-        let node1_height = data_node1.style.height;
-        let node1_innerHTML = data_node1.innerHTML; 
-
-        let node2_height = data_node2.style.height;
-        let node2_innerHTML = data_node2.innerHTML;
-
-        // * changing color to orange
-        data_node1.style.backgroundColor = '#ffc107';
-        data_node2.style.backgroundColor = '#ffc107';
-
-        let node_pushed;
-
-        // await sleep(pauseDuration);
+        let node_pushed_data;
+        let node_to_alter;
 
         if (leftArr[i] <= rightArr[j]) {
 
-            // data_node1.style.height = node2_height;
-            // data_node1.innerHTML = node2_innerHTML;
-            // * they are sorted so change both to purple 
-            data_node1.style.backgroundColor = '#6610f2';
-            data_node2.style.backgroundColor = '#6610f2';
-            // data_node2.style.backgroundColor = '#3CBEB4';
-
-            // data_node2.style.height = node1_height;
-            // data_node2.innerHTML = node1_innerHTML;
-            // data_node2.style.backgroundColor = '#6610f2';
-
             result.push(leftArr[i]);
-            node_pushed = document.getElementById(``);
+
+            node_to_alter = document.getElementById(`tst-d${startIndex}`);
+            
+            // add node_to_alter's data to data_object
+            data_object[startIndex] = {
+                'height': node_to_alter.style.height,
+                'innerHTML': node_to_alter.innerHTML,
+            }
+
+            if (realIndexLeftArr[i] in data_object) {
+                node_pushed_data = data_object[realIndexLeftArr[i]];
+
+                // now change data of node_to_alter
+                node_to_alter.style.height = node_pushed_data['height'];
+                node_to_alter.innerHTML = node_pushed_data['innerHTML'];
+
+            } else {
+                node_pushed_data = document.getElementById(`tst-d${realIndexLeftArr[i]}`);
+
+                // now change data of node_to_alter
+                node_to_alter.style.height = node_pushed_data.style.height;
+                node_to_alter.innerHTML = node_pushed_data.innerHTML;
+
+            }
+
+            startIndex++;
             i++;
 
         } else {
-
-            data_node1.style.height = node2_height;
-            data_node1.innerHTML = node2_innerHTML;
-            data_node1.style.backgroundColor = '#6610f2';
-
-            // ! newline
-            realIndexLeftArr[i] = realIndexRightArr[j];
-
-            data_node2.style.height = node1_height;
-            data_node2.innerHTML = node1_innerHTML;
-            data_node2.style.backgroundColor = '#6610f2';
-
+            
             result.push(rightArr[j]);
+
+            node_to_alter = document.getElementById(`tst-d${startIndex}`);
+            
+            // add node_to_alter's data to data_object
+            data_object[startIndex] = {
+                'height': node_to_alter.style.height,
+                'innerHTML': node_to_alter.innerHTML,
+            }
+
+            if (realIndexRightArr[j] in data_object) {
+                node_pushed_data = data_object[realIndexRightArr[j]];
+
+                // now change data of node_to_alter
+                node_to_alter.style.height = node_pushed_data['height'];
+                node_to_alter.innerHTML = node_pushed_data['innerHTML'];
+
+            } else {
+                node_pushed_data = document.getElementById(`tst-d${realIndexRightArr[j]}`);
+
+                // now change data of node_to_alter
+                node_to_alter.style.height = node_pushed_data.style.height;
+                node_to_alter.innerHTML = node_pushed_data.innerHTML;
+
+            }
+            
+            startIndex++;
             j++;
         }
-
-        // data_node1.style.height = node2_height;
-        // data_node1.innerHTML = node2_innerHTML;
-        // data_node1.style.backgroundColor = '#6610f2';
-
-        // data_node2.style.height = node1_height;
-        // data_node2.innerHTML = node1_innerHTML;
-        // data_node2.style.backgroundColor = '#6610f2';
 
     }
 
     while (i < leftArr.length) {
         result.push(leftArr[i]);
+
+        let node_pushed_data;
+        let node_to_alter;
+
+        node_to_alter = document.getElementById(`tst-d${startIndex}`);
+            
+        if (realIndexLeftArr[i] in data_object) {
+            node_pushed_data = data_object[realIndexLeftArr[i]];
+
+            // now change data of node_to_alter
+            node_to_alter.style.height = node_pushed_data['height'];
+            node_to_alter.innerHTML = node_pushed_data['innerHTML'];
+
+        } else {
+            node_pushed_data = document.getElementById(`tst-d${realIndexLeftArr[i]}`);
+
+            // now change data of node_to_alter
+            node_to_alter.style.height = node_pushed_data.style.height;
+            node_to_alter.innerHTML = node_pushed_data.innerHTML;
+
+        }
+
+        startIndex++;
+
         i++;
     }
 
     while (j < rightArr.length) {
         result.push(rightArr[j]);
+
+        let node_pushed_data;
+        let node_to_alter;
+
+        node_to_alter = document.getElementById(`tst-d${startIndex}`);
+
+        if (realIndexRightArr[j] in data_object) {
+            let node_pushed_data = data_object[realIndexRightArr[j]];
+
+            // now change data of node_to_alter
+            node_to_alter.style.height = node_pushed_data['height'];
+            node_to_alter.innerHTML = node_pushed_data['innerHTML'];
+
+        } else {
+            let node_pushed_data = document.getElementById(`tst-d${realIndexRightArr[j]}`);
+
+            // now change data of node_to_alter
+            node_to_alter.style.height = node_pushed_data.style.height;
+            node_to_alter.innerHTML = node_pushed_data.innerHTML;
+
+        }
+        
+        startIndex++;
+
         j++;
     }
-
-
-    console.log('result');
-    console.log(result);
-
-    console.log('xxxxxxxxxxxxxxxxxxxxxxxxx');
 
     return result;
 
