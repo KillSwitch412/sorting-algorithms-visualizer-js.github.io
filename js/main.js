@@ -11,7 +11,7 @@ let algorithmMap = {
 }
 
 // * default selected algorithm
-let selectedAlgo = 4;
+let selectedAlgo = 1;
 
 // * selecting bubble sort as default algorithn
 selectAlgorithm(selectedAlgo);
