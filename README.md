@@ -1,6 +1,6 @@
 # Sorting Algorithms Visualizer using JavaScript
 
-Live preview with Github Pages: [AlgorithmVisualizer](https://killswitch412.github.io/sorting-algorithms-visualizer-js.github.io/) 
+Live preview with Github Pages: [Algorithm Visualizer](https://killswitch412.github.io/sorting-algorithms-visualizer-js/) 
 
 Algorithm visualizer that visualizes sorting algorithms. 
 
